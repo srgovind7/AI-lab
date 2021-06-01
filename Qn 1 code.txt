@@ -1,0 +1,14 @@
+#training
+  #load data
+import pandas as p
+IRIS=p.read_csv("/content/irisexcel.csv")
+x=IRIS[["sepal_length","sepal_width","petal_length","petal_width"]]
+y=IRIS["species"]
+#model
+from sklearn.svm import SVC
+ML=SVC()
+#fit data to model
+ML=ML.fit(x,y)
+#testing
+r=ML.predict([[3.7,4.9,5.2,3.3]])
+print(r)

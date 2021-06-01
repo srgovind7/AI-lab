@@ -1,0 +1,19 @@
+#training
+  #load data
+import pandas as p
+heart=p.read_csv("/content/heart.csv")
+x=heart[["trtbps","chol","thalachh","oldpeak"]]
+y=heart["output"]
+#cross-v
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.7)
+#model
+from sklearn.svm import SVC
+ML=SVC()
+#fit data to model
+ML=ML.fit(x_train,y_train)
+#testing
+r=ML.predict(x_test)
+from sklearn.metrics import accuracy_score
+r=accuracy_score(r,y_test)
+print("accuracy=",r*100)

@@ -1,0 +1,19 @@
+#training
+  #load data
+import pandas as p
+heart=p.read_csv("/content/heart.csv")
+x=heart[["trtbps","chol","thalachh","oldpeak"]]
+y=heart["output"]
+#model
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+AI= GaussianNB()
+ML=SVC()
+#fit data to model
+ML=ML.fit(x,y)
+AI=AI.fit(x,y)
+#testing
+r1=ML.predict([[130,240,120,3.7]])
+r2=AI.predict([[130,240,120,3.7]])
+print("svc=",r1)
+print("Naive bayes=",r2)
