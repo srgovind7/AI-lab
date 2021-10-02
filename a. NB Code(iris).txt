@@ -1,0 +1,27 @@
+#1. Training
+#Load Data
+import pandas as pd
+iris=pd.read_csv("/content/load_iris final.csv")
+x=iris[['sepal_length','sepal_width','petal_length','petal_width']]
+y=iris['species']
+
+#Build Model
+from sklearn.naive_bayes import GaussianNB
+ML1=GaussianNB()
+from sklearn.naive_bayes import MultinomialNB
+ML2=MultinomialNB()
+from sklearn.naive_bayes import BernoulliNB
+ML3=BernoulliNB()
+
+#Fit data into the model
+ML1=ML1.fit(x,y)
+ML2=ML2.fit(x,y)
+ML3=ML3.fit(x,y)
+
+#2. Testing
+op1=ML1.predict([[3.5, 3.5, 3.5, 3.5]])
+print("Gaussian NB output : ",op1)
+op2=ML2.predict([[3.5, 3.5, 3.5, 3.5]])
+print("Multinomial NB output : ",op2)
+op3=ML3.predict([[3.5, 3.5, 3.5, 3.5]])
+print("Bernoulli NB output : ",op3)

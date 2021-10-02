@@ -1,0 +1,17 @@
+#1. Training
+#Load Data
+import pandas as pd
+heart=pd.read_csv("/content/heart.csv")
+x=heart[['trtbps','chol','thalachh','oldpeak']]
+y=heart['output']
+
+#Build Model
+from sklearn.naive_bayes import GaussianNB
+ML=GaussianNB()
+
+#Fit data into the model
+ML=ML.fit(x,y)
+
+#2. Testing
+op=ML.predict([[130, 240, 120, 3.7]])
+print("NB output : ",op)

@@ -1,0 +1,27 @@
+#1.Training
+#Load Data
+import pandas as pd
+heart=pd.read_csv("/content/heart.csv")
+x=heart[['age','sex','cp','trtbps','chol','fbs','restecg','thalachh','exng','oldpeak','slp','caa','thall']]
+y=heart['output']
+
+#Build the model
+from sklearn.tree import DecisionTreeClassifier
+ML=DecisionTreeClassifier()
+
+#Fit data into the model
+ML=ML.fit(x,y)
+
+#2.Testing
+op=ML.predict([[78,1,3,165,238,0,1,178,1,4.5,1,1,3]])
+print("Class Predicted: ",op)
+
+#3.Graph
+import graphviz
+from sklearn import tree
+data=tree.export_graphviz(ML,feature_names=['age','sex','cp','trtbps','chol','fbs','restecg','thalachh','exng',
+                                            'oldpeak','slp','caa','thall'],class_names=['0','1'],
+                          filled=True,rounded=False,special_characters=True)
+op1=graphviz.Source(data)
+op1
+op1.render("Heart-Decision Tree graph")

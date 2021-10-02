@@ -1,0 +1,26 @@
+# 1.Training
+#Load Data
+from sklearn.datasets import load_iris
+iris = load_iris()
+x=iris.data
+y=iris.target
+
+#Build the model
+from sklearn.tree import DecisionTreeClassifier
+ML=DecisionTreeClassifier()
+
+#Fit data into the model
+ML=ML.fit(x,y)
+
+# 2.Testing
+op=ML.predict([[2.5,4.5,3.8,4.7]])
+print("Class Predicted : ",op)
+
+#Graph
+import graphviz
+from sklearn import tree
+data=tree.export_graphviz(ML,feature_names=iris.feature_names,class_names=iris.target_names,
+                          filled=True,rounded=False,special_characters=True)
+op1=graphviz.Source(data)
+op1
+op1.render("Load Iris")

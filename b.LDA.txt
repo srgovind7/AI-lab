@@ -1,0 +1,21 @@
+# 1. Dataset
+from sklearn import datasets
+iris = datasets.load_iris()
+x=iris.data
+y=iris.target
+target_names = iris.target_names
+
+# 2. PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+lda = LinearDiscriminantAnalysis()
+ldanew=lda.fit(x,y).transform(x)
+print(ldanew)
+
+# 3. Graph plotting
+import matplotlib.pyplot as plt
+xaxis = ldanew[:,0]
+plt.xlabel("PC1")
+yaxis = ldanew[:,1]
+plt.ylabel("PC2")
+plt.title("Dimensionality Reduction")
+plt.scatter(x=xaxis,y=yaxis,cmap="rainbow")
